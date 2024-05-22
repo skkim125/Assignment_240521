@@ -133,33 +133,38 @@ class CalculateBMIViewController: UIViewController {
         let weight = weightTextField.text!
         let firstIf = height.isEmpty || weight.isEmpty
         let secondIf = Double(height) == nil || Double(weight) == nil
-        let thirdIf = Double(height) != nil && Double(weight) != nil
-//        guard !firstIf else { return disableButtonUI(text: "항목을 모두 채워주세요") }
-//        guard !secondIf else { return disableButtonUI(text: "숫자만 입력하세요") }
-//        if thirdIf {
-//            guard !inRangeIf else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
-//            enableButtonUI(text: "결과 보기")
-//        }
         
-        if firstIf {
-            disableButtonUI(text: "항목을 모두 채워주세요")
-        } else {
-            if secondIf {
-                disableButtonUI(text: "숫자만 입력하세요")
-            } else {
-                if thirdIf {
-                    if let h = Double(height), let w = Double(weight) {
-                        let heightRange = inRange(num: h, range: 140...230)
-                        let weightRange = inRange(num: w, range: 30...130)
-                        
-                        guard heightRange else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
-                        guard weightRange else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
-                        
-                        enableButtonUI(text: "결과 보기")
-                    }
-                }
-            }
+        guard !firstIf else { return disableButtonUI(text: "항목을 모두 채워주세요") }
+        guard !secondIf else { return disableButtonUI(text: "숫자만 입력하세요") }
+        
+        if let h = Double(height), let w = Double(weight) {
+            let heightRange = inRange(num: h, range: 140...230)
+            let weightRange = inRange(num: w, range: 30...130)
+            
+            guard heightRange else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
+            guard weightRange else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
+            
+            enableButtonUI(text: "결과 보기")
         }
+        
+        
+//        if firstIf {
+//            disableButtonUI(text: "항목을 모두 채워주세요")
+//        } else {
+//            if secondIf {
+//                disableButtonUI(text: "숫자만 입력하세요")
+//            } else {
+//                if let h = Double(height), let w = Double(weight) {
+//                    let heightRange = inRange(num: h, range: 140...230)
+//                    let weightRange = inRange(num: w, range: 30...130)
+//                    
+//                    guard heightRange else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
+//                    guard weightRange else { return disableButtonUI(text: "범위 내에서 입력해주세요") }
+//                    
+//                    enableButtonUI(text: "결과 보기")
+//                }
+//            }
+//        }
     }
     
     func disableButtonUI(text: String) {
