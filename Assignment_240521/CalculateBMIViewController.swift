@@ -46,7 +46,7 @@ class CalculateBMIViewController: UIViewController {
         subLabel.numberOfLines = 2
         
         charactorImage.image = UIImage(named: "image")
-        charactorImage.contentMode = .scaleAspectFill
+        charactorImage.contentMode = .scaleToFill
     }
     
     // BMI 관련 UI
