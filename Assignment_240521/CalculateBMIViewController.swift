@@ -188,7 +188,7 @@ class CalculateBMIViewController: UIViewController {
             guard heightRange else { return disableButtonUI(button: resultButton, text: "키 범위 내에서 입력해주세요") }
             guard weightRange else { return disableButtonUI(button: resultButton, text: "몸무게 범위 내에서 입력해주세요")}
             
-            enableButtonUI(text: "결과 보기")
+            enableResultButtonUI()
         }
     }
     
@@ -201,9 +201,9 @@ class CalculateBMIViewController: UIViewController {
         button.titleLabel?.textAlignment = .center
     }
     
-    // 활성화 버튼 UI
-    func enableButtonUI(text: String) {
-        resultButton.setTitle(text, for: .normal)
+    // 결과 버튼 활성화 UI
+    func enableResultButtonUI() {
+        resultButton.setTitle("결과 보기", for: .normal)
         resultButton.backgroundColor = .purple
         resultButton.isEnabled = true
     }
@@ -228,9 +228,12 @@ class CalculateBMIViewController: UIViewController {
             UserDefaults.standard.removeObject(forKey: "height")
             UserDefaults.standard.removeObject(forKey: "weight")
             
-            nicknameTextField.text = ""
-            heightTextField.text = ""
-            weightTextField.text = ""
+            nickname = ""
+            height = ""
+            weight = ""
+            
+            loadInfo()
+            disableButtonUI(button: resultButton, text: "결과 보기")
         }
         
         let cancel = UIAlertAction(title: "아니오", style: .cancel)
