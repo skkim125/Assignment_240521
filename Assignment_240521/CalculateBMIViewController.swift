@@ -88,9 +88,11 @@ class CalculateBMIViewController: UIViewController {
     
     // 결과 보기 버튼 UI
     func configureResultButton() {
+        let isEmpty = nickname.isEmpty && height.isEmpty && weight.isEmpty
+        
         resultButton.setTitle("결과 보기", for: .normal)
-        resultButton.backgroundColor = nickname.isEmpty ? .gray : .purple
-        resultButton.isEnabled = false
+        resultButton.backgroundColor = isEmpty ? .gray : .purple
+        resultButton.isEnabled = isEmpty ? false : true
         resultButton.layer.cornerRadius = 10
         resultButton.setTitleColor(.white, for: .normal)
         resultButton.tintColor = .lightGray
